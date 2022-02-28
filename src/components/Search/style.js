@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 30px;
+  width: 100%;
 `;
 
 export const SearchBar = styled.div`
@@ -16,7 +18,6 @@ export const SearchBar = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   border-radius: 50px;
-  /* background-color: pink; */
   position: relative;
 
   @media screen and (max-width: 1044px) {
@@ -45,6 +46,7 @@ export const Input = styled.input`
   @media screen and (max-width: 1044px) {
     padding-left: 15px;
     font-size: 1.6rem;
+    width: 90%;
   }
 `;
 

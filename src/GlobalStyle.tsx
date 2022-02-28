@@ -11,10 +11,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #CAE9FF;
   }
 
@@ -33,6 +29,13 @@ const GlobalStyle = createGlobalStyle`
     @media screen and (max-width: 1044px) {
       font-size: 2.2rem;
     }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
