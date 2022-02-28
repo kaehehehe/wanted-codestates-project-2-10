@@ -9,6 +9,10 @@ export const Items = styled.div`
   text-align: center;
   width: 563px;
 
+  .focus {
+    background-color: red;
+  }
+
   @media screen and (max-width: 1044px) {
     width: 90vw;
   }

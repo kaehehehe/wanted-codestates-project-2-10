@@ -7,12 +7,8 @@ import * as S from './style';
 import { GlobalContext } from '../../App';
 
 function Search() {
-  const [inputValue, setInputValue] = useState('');
-  const { searchResult, setSearchResult } = useContext(GlobalContext);
-
-  // const [hasOptions, setHasOptions] = useState(false);
-  // const [options, setOptions] = useState([]);
-  // const [focusIndex, setFocusIndex] = useState(-1);
+  const { setSearchResult, inputValue, setInputValue } =
+    useContext(GlobalContext);
 
   const { width } = useWindowSize(null);
   const [responsive, setResponsive] = useState(false);
@@ -27,7 +23,8 @@ function Search() {
 
   useEffect(async () => {
     if (inputValue === '') {
-      setSearchResult([]);
+      const value = [];
+      setSearchResult(value);
       return;
     }
     try {
@@ -45,28 +42,16 @@ function Search() {
     setInputValue(e.target.value);
   };
 
-  // const handleOptionsClick = (targetWord) => {
-  //   setInputValue(targetWord);
-  //   setHasOptions(false);
-  // };
-
-  // const handleKeyUp = (e) => {
-  //   if (options.length > 0) {
-  //     if (e.key === 'ArrowUp') {
-  //       if (focusIndex > 0) {
-  //         setFocusIndex(focusIndex - 1);
-  //       }
-  //     } else if (e.key === 'ArrowDown') {
-  //       if (focusIndex < options.length) {
-  //         setFocusIndex(focusIndex + 1);
-  //       }
-  //     } else if (e.key === 'Enter') {
-  //       // handleOptionsClick(options[focusIndex]);
-  //       setFocusIndex(-1);
-  //       setHasOptions(false);
-  //     }
-  //   }
-  // };
+  const handleKeyUp = (e) => {
+    // if (e.key === 'ArrowUp') {
+    //   const nextFocus = focusIndex === 0 ? focusIndex : focusIndex - 1;
+    //   setFocusIndex(nextFocus);
+    // } else if (e.key === 'ArrowDown') {
+    //   const len = searchResult.length;
+    //   const nextFocus = focusIndex === len ? focusIndex : focusIndex + 1;
+    //   setFocusIndex(nextFocus);
+    // }
+  };
 
   return (
     <S.Wrapper>
@@ -79,6 +64,7 @@ function Search() {
           value={inputValue}
           placeholder="질환명을 입력해 주세요."
           onChange={handleInputChange}
+          onKeyUp={handleKeyUp}
         />
         {responsive ? (
           <S.IconBtn>

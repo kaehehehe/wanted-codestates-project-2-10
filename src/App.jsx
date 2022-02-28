@@ -7,7 +7,9 @@ import AutoComplete from './components/AutoComplete';
 export const GlobalContext = createContext(null);
 
 function App() {
+  const [inputValue, setInputValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
+  const [focusIndex, setFocusIndex] = useState(null);
   return (
     <>
       <GlobalStyle />
@@ -17,9 +19,21 @@ function App() {
           <br />
           온라인으로 참여하기
         </h1>
-        <GlobalContext.Provider value={{ searchResult, setSearchResult }}>
+        <GlobalContext.Provider
+          value={{
+            inputValue,
+            setInputValue,
+            searchResult,
+            setSearchResult,
+            focusIndex,
+            setFocusIndex,
+          }}
+        >
           <Search />
-          {searchResult.length > 0 && <AutoComplete />}
+          {inputValue && searchResult.length > 0 && <AutoComplete />}
+          {inputValue && searchResult.length === 0 && (
+            <div className="message">검색어 없음</div>
+          )}
         </GlobalContext.Provider>
       </div>
     </>
