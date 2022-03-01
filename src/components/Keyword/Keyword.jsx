@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { GrSearch } from 'react-icons/gr';
 
 import * as S from './style';
-import { GlobalContext } from '../../App';
 
-function Keyword({ name, index }) {
-  const { focusIndex } = useContext(GlobalContext);
+function Keyword({ name }) {
   return (
-    <S.Item className={focusIndex === index && 'focus'}>
+    <S.Item>
       <GrSearch />
       <S.Name>{name}</S.Name>
     </S.Item>
