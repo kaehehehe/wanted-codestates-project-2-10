@@ -10,7 +10,7 @@ export const Items = styled.div`
   text-align: center;
 
   .focus {
-    background-color: red;
+    background-color: rgba(0, 0, 0, 0.12);
   }
 
   @media screen and (max-width: 1044px) {

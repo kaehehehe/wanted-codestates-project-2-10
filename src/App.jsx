@@ -16,7 +16,9 @@ function App() {
           <br />
           온라인으로 참여하기
         </h1>
-        <InputContext.Provider value={{ inputValue, setInputValue }}>
+        <InputContext.Provider
+          value={{ inputValue, setInputValue }}
+        >
           <Search />
         </InputContext.Provider>
       </div>
