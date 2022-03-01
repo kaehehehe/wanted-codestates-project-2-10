@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Items = styled.div`
+  width: 563px;
   list-style: none;
   background-color: white;
   margin-top: 10px;
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  width: 563px;
 
   .focus {
     background-color: red;
@@ -28,5 +28,4 @@ export const Title = styled.h3`
 
 export const Wrapper = styled.ul`
   max-height: 320px;
-  overflow-y: scroll;
 `;

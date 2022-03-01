@@ -37,20 +37,6 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
   }
-
-  .message {
-    font-size: 1.6rem;
-    text-align: start;
-    margin-top: 10px;
-    width: 563px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-
-    @media screen and (max-width: 1044px) {
-      width: 90vw;
-    }
-  }
 `;
 
 export default GlobalStyle;
