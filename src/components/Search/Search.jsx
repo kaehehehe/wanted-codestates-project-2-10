@@ -11,6 +11,7 @@ import AutoComplete from '../AutoComplete';
 function Search() {
   const { inputValue, setInputValue } = useContext(InputContext);
   const [targetIndex, setTargetIndex] = useState(-1);
+  const [value, setValue] = useState('');
 
   const dispatch = useDispatch();
   const data = useSelector((store) => store.data);
@@ -34,14 +35,11 @@ function Search() {
     dispatch(getData(inputValue));
   }, [inputValue]);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
   const handleKeyUp = (e) => {
+    setInputValue(e.target.value);
     switch (e.key) {
       case 'ArrowUp':
-        if (targetIndex <= 0) {
+        if (targetIndex < 0) {
           return;
         } else {
           setTargetIndex(targetIndex - 1);
@@ -67,9 +65,9 @@ function Search() {
           </S.Icon>
           <S.Input
             type="search"
-            value={inputValue}
+            value={value}
             placeholder="질환명을 입력해 주세요."
-            onChange={handleInputChange}
+            onChange={(e) => setValue(e.target.value)}
             onKeyUp={handleKeyUp}
           />
           {responsive ? (
