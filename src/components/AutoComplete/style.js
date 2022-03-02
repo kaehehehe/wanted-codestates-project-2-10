@@ -27,5 +27,5 @@ export const Title = styled.h3`
 `;
 
 export const Wrapper = styled.ul`
-  max-height: 320px;
+  max-height: 330px;
 `;
