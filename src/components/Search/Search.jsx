@@ -11,15 +11,18 @@ import AutoComplete from '../AutoComplete';
 function Search() {
   const { inputValue, setInputValue } = useContext(InputContext);
   const [targetIndex, setTargetIndex] = useState(-1);
-  const [value, setValue] = useState('');
 
   const dispatch = useDispatch();
   const data = useSelector((store) => store.data);
-  let searchResult = data?.data.length === 0 ? false : true;
+  const searchResult = data?.data.length === 0 ? null : data.data.slice(0, 7);
 
   const { width } = useWindowSize(null);
   const [responsive, setResponsive] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+
+  useEffect(() => {
+    setTargetIndex(-1);
+  }, [isFocus]);
 
   useEffect(() => {
     if (width < 1044) {
@@ -38,22 +41,28 @@ function Search() {
 
   const handleKeyUp = (e) => {
     setInputValue(e.target.value);
+    const maxIndex = searchResult?.length - 1;
+
     switch (e.key) {
       case 'ArrowUp':
-        if (targetIndex < 0) {
+        if (targetIndex === 0) {
           return;
         } else {
-          setTargetIndex(targetIndex - 1);
+          const index = targetIndex - 1;
+          setTargetIndex(index);
+          setInputValue(searchResult[index].name);
         }
         break;
       case 'ArrowDown':
-        if (targetIndex >= 7) {
+        if (targetIndex === maxIndex) {
           return;
+        } else {
+          const index = targetIndex + 1;
+          setTargetIndex(index);
+          setInputValue(searchResult[index].name);
         }
-        setTargetIndex(targetIndex + 1);
         break;
       default:
-        break;
     }
   };
 
@@ -66,9 +75,9 @@ function Search() {
           </S.Icon>
           <S.Input
             type="search"
-            value={value}
+            value={inputValue}
             placeholder="질환명을 입력해 주세요."
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}
             onKeyUp={handleKeyUp}
             onBlur={() => setIsFocus(false)}
             onFocus={() => setIsFocus(true)}
