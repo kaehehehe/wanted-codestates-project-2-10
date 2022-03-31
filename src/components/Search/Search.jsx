@@ -19,6 +19,7 @@ function Search() {
 
   const { width } = useWindowSize(null);
   const [responsive, setResponsive] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
     if (width < 1044) {
@@ -69,6 +70,8 @@ function Search() {
             placeholder="질환명을 입력해 주세요."
             onChange={(e) => setValue(e.target.value)}
             onKeyUp={handleKeyUp}
+            onBlur={() => setIsFocus(false)}
+            onFocus={() => setIsFocus(true)}
           />
           {responsive ? (
             <S.IconBtn>
@@ -79,8 +82,12 @@ function Search() {
           )}
         </S.SearchBar>
       </S.Wrapper>
-      {inputValue && searchResult && <AutoComplete targetIndex={targetIndex} />}
-      {inputValue && !searchResult && <S.Message>검색어 없음</S.Message>}
+      {isFocus && inputValue && searchResult && (
+        <AutoComplete targetIndex={targetIndex} />
+      )}
+      {isFocus && inputValue && !searchResult && (
+        <S.Message>검색어 없음</S.Message>
+      )}
     </>
   );
 }
