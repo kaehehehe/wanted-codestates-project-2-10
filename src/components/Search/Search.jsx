@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GrSearch } from 'react-icons/gr';
 import { useWindowSize } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as S from './style';
+import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { InputContext } from '../../App';
 import { getData } from '../../redux/searchSlice';
 import AutoComplete from '../AutoComplete';
@@ -61,8 +61,8 @@ function Search() {
           setTargetIndex(index);
           setInputValue(searchResult[index].name);
         }
-        break;
       default:
+        return;
     }
   };
 
@@ -71,7 +71,7 @@ function Search() {
       <S.Wrapper>
         <S.SearchBar>
           <S.Icon>
-            <GrSearch />
+            <SearchIcon width={18} />
           </S.Icon>
           <S.Input
             type="search"
@@ -84,7 +84,7 @@ function Search() {
           />
           {responsive ? (
             <S.IconBtn>
-              <GrSearch />
+              <SearchIcon width={15} />
             </S.IconBtn>
           ) : (
             <S.Button>검색</S.Button>

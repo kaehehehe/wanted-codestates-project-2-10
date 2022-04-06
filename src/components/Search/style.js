@@ -27,8 +27,6 @@ export const SearchBar = styled.div`
 `;
 
 export const Icon = styled.div`
-  font-size: 20px;
-  width: 20px;
   margin: 0 10px;
 
   @media screen and (max-width: 1044px) {
@@ -66,12 +64,10 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const IconBtn = styled.button`
-  height: 47px;
+export const IconBtn = styled.div`
   position: absolute;
-  top: 0;
+  top: 15px;
   right: 18px;
-  font-size: 1.6rem;
 `;
 
 export const Message = styled.div`

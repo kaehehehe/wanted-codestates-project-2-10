@@ -1,12 +1,12 @@
 import React from 'react';
-import { GrSearch } from 'react-icons/gr';
 
 import * as S from './style';
+import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 
 function Keyword({ name, index, targetIndex }) {
   return (
     <S.Item className={index === targetIndex && 'focus'}>
-      <GrSearch />
+      <SearchIcon width={15} />
       <S.Name>{name}</S.Name>
     </S.Item>
   );
