@@ -7,8 +7,7 @@ import Keyword from '../Keyword';
 
 function AutoComplete({ targetIndex }) {
   const { inputValue } = useContext(InputContext);
-  const data = useSelector((store) => store.data);
-  const searchResult = data?.data.length === 0 ? null : data.data.slice(0, 7);
+  const searchResult = useSelector((store) => store.data.data);
 
   return (
     <S.Items>

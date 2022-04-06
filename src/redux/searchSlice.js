@@ -7,7 +7,7 @@ export const getData = createAsyncThunk(
     const response = await axios.get(
       `https://api.clinicaltrialskorea.com/api/v1/search-conditions/?name=${inputValue}`
     );
-    return response.data;
+    return response.data.slice(0, 7);
   }
 );
 

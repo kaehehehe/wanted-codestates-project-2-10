@@ -11,10 +11,11 @@ import AutoComplete from '../AutoComplete';
 function Search() {
   const { inputValue, setInputValue } = useContext(InputContext);
   const [targetIndex, setTargetIndex] = useState(-1);
+  const [searchedValue, setSearchedValue] = useState('');
 
   const dispatch = useDispatch();
   const data = useSelector((store) => store.data);
-  const searchResult = data?.data.length === 0 ? null : data.data.slice(0, 7);
+  const searchResult = data?.data.length === 0 ? null : data.data;
 
   const { width } = useWindowSize(null);
   const [responsive, setResponsive] = useState(false);
@@ -37,10 +38,9 @@ function Search() {
       return;
     }
     dispatch(getData(inputValue));
-  }, [inputValue]);
+  }, [searchedValue]);
 
   const handleKeyUp = (e) => {
-    setInputValue(e.target.value);
     const maxIndex = searchResult?.length - 1;
 
     switch (e.key) {
@@ -77,7 +77,10 @@ function Search() {
             type="search"
             value={inputValue}
             placeholder="질환명을 입력해 주세요."
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+              setSearchedValue(e.target.value);
+            }}
             onKeyUp={handleKeyUp}
             onBlur={() => setIsFocus(false)}
             onFocus={() => setIsFocus(true)}
