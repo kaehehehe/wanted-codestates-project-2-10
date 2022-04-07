@@ -14,6 +14,8 @@ function Search() {
   const [width, setWidth] = useState(null);
   const [responsive, setResponsive] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [resizeTimer, setResizeTimer] = useState(0);
+  const [keyupTimer, setKeyupTimer] = useState(0);
 
   const dispatch = useDispatch();
   const data = useSelector((store) => store.data);
@@ -25,7 +27,13 @@ function Search() {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      setWidth(window.outerWidth);
+      if (resizeTimer) {
+        clearTimeout(resizeTimer);
+      }
+      const newTimer = setTimeout(() => {
+        setWidth(window.outerWidth);
+      }, 100);
+      setResizeTimer(newTimer);
     });
     if (width < 1044) {
       setResponsive(true);
@@ -33,6 +41,17 @@ function Search() {
       setResponsive(false);
     }
   }, [width]);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    if (keyupTimer) {
+      clearTimeout(keyupTimer);
+    }
+    const newTimer = setTimeout(() => {
+      setSearchedValue(e.target.value);
+    }, 300);
+    setKeyupTimer(newTimer);
+  };
 
   useEffect(() => {
     if (inputValue === '') {
@@ -78,10 +97,7 @@ function Search() {
             type="search"
             value={inputValue}
             placeholder="질환명을 입력해 주세요."
-            onChange={(e) => {
-              setInputValue(e.target.value);
-              setSearchedValue(e.target.value);
-            }}
+            onChange={handleChange}
             onKeyUp={handleKeyUp}
             onBlur={() => setIsFocus(false)}
             onFocus={() => setIsFocus(true)}
