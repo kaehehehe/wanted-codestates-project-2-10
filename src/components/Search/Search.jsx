@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useWindowSize } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as S from './style';
@@ -12,20 +11,22 @@ function Search() {
   const { inputValue, setInputValue } = useContext(InputContext);
   const [targetIndex, setTargetIndex] = useState(-1);
   const [searchedValue, setSearchedValue] = useState('');
+  const [width, setWidth] = useState(null);
+  const [responsive, setResponsive] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
   const dispatch = useDispatch();
   const data = useSelector((store) => store.data);
   const searchResult = data?.data.length === 0 ? null : data.data;
-
-  const { width } = useWindowSize(null);
-  const [responsive, setResponsive] = useState(false);
-  const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
     setTargetIndex(-1);
   }, [isFocus]);
 
   useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWidth(window.outerWidth);
+    });
     if (width < 1044) {
       setResponsive(true);
     } else {
