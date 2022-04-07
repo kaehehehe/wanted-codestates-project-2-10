@@ -1,5 +1,13 @@
 [결과물](https://kaehehehe.github.io/wanted-codestates-project-2-10/)
 
+## 사용스택
+<div>
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+  <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+  <img src="https://img.shields.io/badge/redux--toolkit-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white" />
+</div>
+
+
 ## 구현한 기능 및 구현 방법
 
 ### 1. 창 크기에 따라 UI가 바뀌도록 구현했습니다
